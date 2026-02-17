@@ -1,4 +1,34 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function CTA() {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus('sending');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
+  }
+
   return (
     <section id="contact" className="section-padding relative overflow-hidden hero-gradient">
       {/* Decorative */}
@@ -25,47 +55,89 @@ export default function CTA() {
 
           {/* Contact Form */}
           <div className="mx-auto max-w-lg rounded-3xl bg-white/10 p-8 backdrop-blur-lg sm:p-10">
-            <form className="space-y-5">
-              <div>
-                <input
-                  type="text"
-                  placeholder="お名前"
-                  className="w-full rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
-                />
+            {status === 'success' ? (
+              <div className="py-12 text-center">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-400/20">
+                  <svg className="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-bold text-white">送信完了しました</h3>
+                <p className="mb-6 text-sm text-white/70">
+                  担当者より2営業日以内にご連絡いたします。
+                </p>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="rounded-xl border border-white/30 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-white/10"
+                >
+                  新しいお問い合わせ
+                </button>
               </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="メールアドレス"
-                  className="w-full rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
-                />
-              </div>
-              <div>
-                <select className="w-full rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white/70 outline-none transition-colors focus:border-white/40 focus:bg-white/15">
-                  <option value="">お問い合わせ内容を選択</option>
-                  <option value="trial">無料体験レッスンについて</option>
-                  <option value="weekday">平日プログラムについて</option>
-                  <option value="weekend">休日プログラムについて</option>
-                  <option value="other">その他</option>
-                </select>
-              </div>
-              <div>
-                <textarea
-                  placeholder="メッセージ（任意）"
-                  rows={4}
-                  className="w-full resize-none rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-white py-4 text-base font-bold text-primary-700 shadow-2xl transition-all hover:-translate-y-0.5 hover:shadow-white/25"
-              >
-                送信する
-              </button>
-            </form>
-            <p className="mt-4 text-xs text-white/40">
-              ※ 送信後、担当者より2営業日以内にご連絡いたします。
-            </p>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY'} />
+                <input type="hidden" name="subject" value="Ousia School お問い合わせ" />
+                <input type="hidden" name="from_name" value="Ousia School Website" />
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    placeholder="お名前"
+                    className="w-full rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="メールアドレス"
+                    className="w-full rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
+                  />
+                </div>
+                <div>
+                  <select
+                    name="inquiry_type"
+                    required
+                    className="w-full rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white/70 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
+                  >
+                    <option value="">お問い合わせ内容を選択</option>
+                    <option value="無料体験レッスンについて">無料体験レッスンについて</option>
+                    <option value="平日プログラムについて">平日プログラムについて</option>
+                    <option value="休日プログラムについて">休日プログラムについて</option>
+                    <option value="その他">その他</option>
+                  </select>
+                </div>
+                <div>
+                  <textarea
+                    name="message"
+                    placeholder="メッセージ（任意）"
+                    rows={4}
+                    className="w-full resize-none rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
+                  />
+                </div>
+
+                {status === 'error' && (
+                  <p className="text-sm text-red-300">
+                    送信に失敗しました。もう一度お試しください。
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className="w-full rounded-xl bg-white py-4 text-base font-bold text-primary-700 shadow-2xl transition-all hover:-translate-y-0.5 hover:shadow-white/25 disabled:opacity-50 disabled:hover:translate-y-0"
+                >
+                  {status === 'sending' ? '送信中...' : '送信する'}
+                </button>
+              </form>
+            )}
+            {status !== 'success' && (
+              <p className="mt-4 text-xs text-white/40">
+                ※ 送信後、担当者より2営業日以内にご連絡いたします。
+              </p>
+            )}
           </div>
         </div>
       </div>
