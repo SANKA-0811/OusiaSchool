@@ -75,7 +75,7 @@ export default function CTA() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
-                <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY'} />
+                <input type="hidden" name="access_key" value="8f295401-4498-4ade-a55f-aa2b4f30ab4b" />
                 <input type="hidden" name="subject" value="Ousia School お問い合わせ" />
                 <input type="hidden" name="from_name" value="Ousia School Website" />
                 <div>
