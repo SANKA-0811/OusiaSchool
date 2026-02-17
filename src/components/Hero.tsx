@@ -26,9 +26,9 @@ export default function Hero() {
 
         {/* Subheading */}
         <p className="animate-fade-in-up-delayed mb-10 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
-          平日は英語の試験対策をAIがサポート。
+          火・木は英語試験対策をAIがサポート。
           <br className="hidden sm:block" />
-          休日はAI&times;英語の探究学習でグローバルに挑戦。
+          土曜はAI&times;英語の探究学習でグローバルに挑戦。
           <br className="hidden sm:block" />
           <strong className="text-white">「本質（Ousia）」</strong>
           を追求する、新しいオンラインスクール。

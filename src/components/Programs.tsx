@@ -1,18 +1,18 @@
 export default function Programs() {
   const weekdaySchedule = [
-    { time: '17:00 - 17:10', activity: 'ウォームアップ & 目標確認' },
-    { time: '17:10 - 17:40', activity: 'AI個別学習（弱点克服ドリル）' },
-    { time: '17:40 - 18:10', activity: '講師による解説 & 質問対応' },
-    { time: '18:10 - 18:25', activity: '確認テスト & 振り返り' },
-    { time: '18:25 - 18:30', activity: '次回の学習プラン確認' },
+    { time: '19:00 - 19:10', activity: 'ウォームアップ & 目標確認' },
+    { time: '19:10 - 19:40', activity: 'AI個別学習（弱点克服ドリル）' },
+    { time: '19:40 - 20:10', activity: '講師による解説 & 質問対応' },
+    { time: '20:10 - 20:25', activity: '確認テスト & 振り返り' },
+    { time: '20:25 - 20:30', activity: '次回の学習プラン確認' },
   ];
 
   const weekendSchedule = [
-    { time: '10:00 - 10:15', activity: 'チームビルディング & テーマ発表' },
-    { time: '10:15 - 11:00', activity: 'AI×英語リサーチ & ディスカッション' },
-    { time: '11:00 - 11:45', activity: 'グループワーク & プロトタイピング' },
-    { time: '11:45 - 12:15', activity: 'プレゼンテーション（英語）' },
-    { time: '12:15 - 12:30', activity: 'フィードバック & リフレクション' },
+    { time: '13:00 - 13:15', activity: 'チームビルディング & テーマ発表' },
+    { time: '13:15 - 14:30', activity: 'AI×英語リサーチ & ディスカッション' },
+    { time: '14:30 - 16:00', activity: 'グループワーク & プロトタイピング' },
+    { time: '16:00 - 16:45', activity: 'プレゼンテーション（英語）' },
+    { time: '16:45 - 17:00', activity: 'フィードバック & リフレクション' },
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function Programs() {
             一週間の<span className="gradient-text">学びのサイクル</span>
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
-            平日のインプットと休日のアウトプットを組み合わせた、
+            火・木のインプットと土曜のアウトプットを組み合わせた、
             <br className="hidden sm:block" />
             実践的な学習サイクルで確実に力を伸ばします。
           </p>
@@ -46,7 +46,7 @@ export default function Programs() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">平日プログラム</h3>
-                  <p className="text-sm text-primary-100">月〜金 / 90分</p>
+                  <p className="text-sm text-primary-100">火・木 19:00〜20:30 / 90分（21時完全下校）</p>
                 </div>
               </div>
             </div>
@@ -83,7 +83,7 @@ export default function Programs() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white">休日プログラム</h3>
-                  <p className="text-sm text-accent-100">土・日 / 150分</p>
+                  <p className="text-sm text-accent-100">土曜 13:00〜17:00 / 4時間（18時完全下校）</p>
                 </div>
               </div>
             </div>
@@ -116,30 +116,42 @@ export default function Programs() {
             週間学習フロー
           </h3>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map((day) => (
-              <div
-                key={day}
-                className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl bg-primary-100 sm:h-20 sm:w-20"
-              >
-                <span className="text-xs font-bold text-primary-600">{day}</span>
-                <span className="text-[10px] text-primary-500">試験対策</span>
-              </div>
-            ))}
-            <svg className="mx-1 h-6 w-6 text-gray-300 sm:mx-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-            {['Sat', 'Sun'].map((day) => (
-              <div
-                key={day}
-                className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl bg-accent-100 sm:h-20 sm:w-20"
-              >
-                <span className="text-xs font-bold text-accent-600">{day}</span>
-                <span className="text-[10px] text-accent-500">探究学習</span>
-              </div>
-            ))}
+            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => {
+              const isClass = day === 'Tue' || day === 'Thu';
+              const isSat = day === 'Sat';
+              return (
+                <div
+                  key={day}
+                  className={`flex h-16 w-16 flex-col items-center justify-center rounded-2xl sm:h-20 sm:w-20 ${
+                    isSat
+                      ? 'bg-accent-100'
+                      : isClass
+                        ? 'bg-primary-100'
+                        : 'bg-gray-100'
+                  }`}
+                >
+                  <span className={`text-xs font-bold ${
+                    isSat
+                      ? 'text-accent-600'
+                      : isClass
+                        ? 'text-primary-600'
+                        : 'text-gray-400'
+                  }`}>{day}</span>
+                  <span className={`text-[10px] ${
+                    isSat
+                      ? 'text-accent-500'
+                      : isClass
+                        ? 'text-primary-500'
+                        : 'text-gray-300'
+                  }`}>
+                    {isSat ? '探究学習' : isClass ? '試験対策' : '—'}
+                  </span>
+                </div>
+              );
+            })}
           </div>
           <p className="mt-6 text-center text-sm text-gray-500">
-            平日のインプット → 休日のアウトプット のサイクルで、英語力とAIスキルを同時に伸ばします
+            火・木の試験対策（インプット） → 土曜の探究学習（アウトプット）のサイクルで、英語力とAIスキルを同時に伸ばします
           </p>
         </div>
       </div>
