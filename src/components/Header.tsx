@@ -16,10 +16,8 @@ export default function Header() {
     <header className="fixed left-0 right-0 top-0 z-50 bg-white/90 backdrop-blur-md">
       <div className="container-max flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl gradient-bg">
-            <span className="text-xl font-bold text-white">O</span>
-          </div>
+        <a href="#" className="flex items-center gap-2.5">
+          <img src="/favicon.svg" alt="" width={40} height={40} className="h-10 w-10" />
           <span className="text-xl font-bold text-gray-900">
             Ousia<span className="gradient-text">School</span>
           </span>

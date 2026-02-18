@@ -31,6 +31,19 @@ export const metadata: Metadata = {
     '小学生 英語',
     '中学生 英語',
     '高校生 英語',
+    'オンライン英語塾',
+    '英語 個別指導 オンライン',
+    'AI個別最適化学習',
+    '英検 オンライン対策',
+    'TOEFL 小学生',
+    'TOEIC 中学生',
+    '英語4技能',
+    '探究型学習 英語',
+    'プロジェクト型学習 英語',
+    'グローバル人材育成',
+    '子供 英語 AI',
+    '英語塾 おすすめ',
+    'オンラインスクール 英語 子供',
   ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
@@ -43,12 +56,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'Ousia School | 英語×AIで未来を切り拓く次世代オンラインスクール',
     description:
       '平日は英検・TOEIC・TOEFL等の試験対策をAIがサポート。休日はAI×英語の探究学習でグローバルに挑戦。完全オンラインの次世代スクール。',
     url: SITE_URL,
     siteName: SITE_NAME,
+    images: [
+      {
+        url: '/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Ousia School - 英語×AIで未来を切り拓く',
+      },
+    ],
     locale: 'ja_JP',
     type: 'website',
   },
@@ -57,6 +82,7 @@ export const metadata: Metadata = {
     title: 'Ousia School | 英語×AIで未来を切り拓く',
     description:
       '平日は英語試験対策、休日はAI×英語の探究学習。AIによる個別最適化で効率的に学べるオンラインスクール。',
+    images: ['/og-image.svg'],
   },
   robots: {
     index: true,
@@ -78,6 +104,7 @@ const organizationJsonLd = {
   name: 'Ousia School',
   alternateName: 'ウーシアスクール',
   url: SITE_URL,
+  logo: `${SITE_URL}/logo.svg`,
   description: SITE_DESCRIPTION,
   email: 'shuto.oba.ousia@gmail.com',
   foundingDate: '2026',
@@ -209,6 +236,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

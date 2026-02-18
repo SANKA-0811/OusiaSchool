@@ -5,10 +5,8 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="mb-4 flex items-center gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl gradient-bg">
-                <span className="text-xl font-bold text-white">O</span>
-              </div>
+            <div className="mb-4 flex items-center gap-2.5">
+              <img src="/favicon.svg" alt="" width={40} height={40} className="h-10 w-10" />
               <span className="text-xl font-bold text-white">
                 Ousia<span className="text-primary-400">School</span>
               </span>
