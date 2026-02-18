@@ -63,7 +63,7 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="section-padding bg-white">
+    <section id="features" aria-label="Ousia Schoolの特長" className="section-padding bg-white">
       <div className="container-max">
         {/* Section Header */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
@@ -81,7 +81,7 @@ export default function Features() {
         {/* Features Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <div
+            <article
               key={index}
               className="group rounded-3xl border border-gray-100 bg-white p-8 card-hover"
             >
@@ -90,7 +90,7 @@ export default function Features() {
               </div>
               <h3 className="mb-3 text-lg font-bold text-gray-900">{feature.title}</h3>
               <p className="text-sm leading-relaxed text-gray-600">{feature.description}</p>
-            </div>
+            </article>
           ))}
         </div>
       </div>
