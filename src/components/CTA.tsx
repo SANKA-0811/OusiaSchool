@@ -78,6 +78,9 @@ export default function CTA() {
                 <input type="hidden" name="access_key" value="8f295401-4498-4ade-a55f-aa2b4f30ab4b" />
                 <input type="hidden" name="subject" value="Ousia School お問い合わせ" />
                 <input type="hidden" name="from_name" value="Ousia School Website" />
+                <input type="hidden" name="redirect" value="false" />
+                {/* Honeypot: spam対策 */}
+                <input type="checkbox" name="botcheck" className="hidden" aria-hidden="true" />
                 <div>
                   <input
                     type="text"
@@ -93,6 +96,7 @@ export default function CTA() {
                     name="email"
                     required
                     placeholder="メールアドレス"
+                    autoComplete="email"
                     className="w-full rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-sm text-white placeholder-white/50 outline-none transition-colors focus:border-white/40 focus:bg-white/15"
                   />
                 </div>
