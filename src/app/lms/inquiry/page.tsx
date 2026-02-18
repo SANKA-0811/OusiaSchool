@@ -53,6 +53,10 @@ export default function InquiryPage() {
   const [journalInput, setJournalInput] = useState('');
   const [activeTab, setActiveTab] = useState<'chat' | 'journal'>('chat');
 
+  // Challenge update
+  const [editingChallenge, setEditingChallenge] = useState(false);
+  const [newChallengeText, setNewChallengeText] = useState('');
+
   useEffect(() => {
     if (!loading && !user) router.replace('/lms/login');
     if (!loading && user) loadProjects();
@@ -171,6 +175,18 @@ export default function InquiryPage() {
     } finally {
       setChatLoading(false);
     }
+  };
+
+  const updateChallenge = async () => {
+    if (!newChallengeText.trim() || !activeProject) return;
+    const updated = { ...activeProject, currentChallenge: newChallengeText.trim() };
+    setActiveProject(updated);
+    setEditingChallenge(false);
+    setNewChallengeText('');
+    await updateDoc(doc(db, 'inquiryProjects', activeProject.id), {
+      currentChallenge: newChallengeText.trim(),
+      updatedAt: serverTimestamp(),
+    });
   };
 
   const addJournal = async () => {
@@ -388,12 +404,49 @@ export default function InquiryPage() {
                     </p>
                   </div>
                   <div className="border-t border-gray-100 pt-3">
-                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                      現在の課題
-                    </p>
-                    <p className="text-sm text-gray-700 leading-relaxed">
-                      {activeProject.currentChallenge}
-                    </p>
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                        現在の課題
+                      </p>
+                      <button
+                        onClick={() => {
+                          setNewChallengeText(activeProject.currentChallenge);
+                          setEditingChallenge(true);
+                        }}
+                        className="text-xs text-purple-500 hover:text-purple-700 transition-colors"
+                      >
+                        更新
+                      </button>
+                    </div>
+                    {editingChallenge ? (
+                      <div>
+                        <textarea
+                          value={newChallengeText}
+                          onChange={(e) => setNewChallengeText(e.target.value)}
+                          rows={3}
+                          className="w-full px-3 py-2 text-sm border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none mb-2"
+                        />
+                        <div className="flex gap-2">
+                          <button
+                            onClick={updateChallenge}
+                            disabled={!newChallengeText.trim()}
+                            className="flex-1 py-1.5 bg-purple-600 text-white text-xs font-semibold rounded-lg hover:bg-purple-700 transition-all disabled:opacity-40"
+                          >
+                            保存
+                          </button>
+                          <button
+                            onClick={() => setEditingChallenge(false)}
+                            className="px-3 py-1.5 bg-gray-100 text-gray-500 text-xs rounded-lg hover:bg-gray-200 transition-all"
+                          >
+                            キャンセル
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        {activeProject.currentChallenge}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

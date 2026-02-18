@@ -9,6 +9,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from './firebase';
@@ -64,7 +65,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     displayName: string
   ) => {
     const result = await createUserWithEmailAndPassword(auth, email, password);
-    await ensureUserDoc({ ...result.user, displayName });
+    await updateProfile(result.user, { displayName });
+    await ensureUserDoc(result.user);
   };
 
   const logout = async () => {
