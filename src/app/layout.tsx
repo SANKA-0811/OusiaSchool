@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import './globals.css';
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || '';
+const GA_ID = 'G-R9DYWND8EJ';
 
 const SITE_URL = 'https://ousia-school.ai';
 const SITE_NAME = 'Ousia School';
