@@ -1,81 +1,88 @@
 export default function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden hero-gradient">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl animate-float" />
-        <div className="absolute -right-20 bottom-20 h-96 w-96 rounded-full bg-accent-500/20 blur-3xl animate-float-delayed" />
-        <div className="absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-primary-300/10 blur-3xl" />
+      {/* Decorative orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -left-24 top-16 h-96 w-96 rounded-full bg-white/10 blur-3xl animate-float" />
+        <div className="absolute -right-24 bottom-16 h-[28rem] w-[28rem] rounded-full bg-accent-500/20 blur-3xl animate-float-delayed" />
+        <div className="absolute left-1/2 top-1/4 h-72 w-72 -translate-x-1/2 rounded-full bg-primary-300/10 blur-3xl" />
+        {/* Grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
       </div>
 
-      <div className="container-max relative z-10 flex min-h-screen flex-col items-center justify-center px-4 pt-20 text-center sm:px-6 lg:px-8">
+      <div className="container-max relative z-10 flex min-h-screen flex-col items-center justify-center px-4 pt-24 pb-16 text-center sm:px-6 lg:px-8">
+
         {/* Badge */}
-        <div className="animate-fade-in-up mb-8 inline-flex items-center gap-2 rounded-full bg-white/15 px-5 py-2 backdrop-blur-sm">
-          <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-sm font-medium text-white/90">
-            2026年 春期生 募集開始
+        <div className="animate-fade-in-up mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-5 py-2.5 backdrop-blur-sm">
+          <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-sm font-semibold text-white/90 tracking-wide">
+            2026年 春期生 先行募集中
           </span>
         </div>
 
         {/* Main Heading */}
-        <h1 className="animate-fade-in-up mb-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-          英語<span className="text-accent-300">&times;</span>AI で
-          <br />
-          未来を切り拓く
+        <h1 className="animate-fade-in-up mb-4 text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl">
+          英語 <span className="text-accent-300">×</span> AI<br />
+          <span className="text-white/90">で世界へ</span>
         </h1>
 
-        {/* Subheading */}
-        <p className="animate-fade-in-up-delayed mb-10 max-w-2xl text-lg leading-relaxed text-white/80 sm:text-xl">
-          火・木は英語試験対策をAIがサポート。
-          <br className="hidden sm:block" />
-          土曜はAI&times;英語の探究学習でグローバルに挑戦。
-          <br className="hidden sm:block" />
-          <strong className="text-white">「本質（Ousia）」</strong>
-          を追求する、新しいオンラインスクール。
+        {/* Sub heading */}
+        <p className="animate-fade-in-up-delayed mb-4 text-lg font-light tracking-[0.2em] text-white/50 sm:text-xl">
+          OIS — Discovering the Essence of Global Education
+        </p>
+
+        {/* Description */}
+        <p className="animate-fade-in-up-delayed mt-4 mb-10 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
+          火・木は<strong className="text-white font-semibold">AIサポート英語試験対策</strong>。
+          土曜は<strong className="text-white font-semibold">英語×AI探究学習</strong>でグローバルな課題に挑む。<br />
+          「本質（Ousia）」を追求する次世代オンラインスクール。
         </p>
 
         {/* CTA Buttons */}
         <div className="animate-fade-in-up-delayed-2 flex flex-col gap-4 sm:flex-row">
           <a
             href="#contact"
-            className="rounded-full bg-white px-8 py-4 text-base font-bold text-primary-700 shadow-2xl transition-all hover:-translate-y-0.5 hover:shadow-white/25 sm:text-lg"
+            className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 text-base font-bold text-primary-700 shadow-2xl shadow-primary-900/30 transition-all hover:-translate-y-0.5 hover:shadow-white/20"
           >
-            無料相談に申し込む
+            無料相談を申し込む
+            <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
           <a
             href="#concept"
-            className="rounded-full border-2 border-white/30 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:border-white/60 hover:bg-white/10 sm:text-lg"
+            className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/25 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/15"
           >
-            詳しく見る
+            学校について知る
           </a>
         </div>
 
         {/* Stats */}
-        <div className="animate-fade-in-up-delayed-2 mt-16 grid grid-cols-3 gap-8 sm:gap-16">
-          <div className="text-center">
-            <div className="text-3xl font-extrabold text-white sm:text-4xl">AI</div>
-            <div className="mt-1 text-xs text-white/60 sm:text-sm">活用学習</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-extrabold text-white sm:text-4xl">
-              Global
+        <div className="animate-fade-in-up-delayed-2 mt-16 grid grid-cols-3 gap-6 sm:gap-12">
+          {[
+            { value: '週3回', label: '授業日' },
+            { value: '100%', label: 'オンライン' },
+            { value: 'AI', label: '個別最適化' },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-2xl font-extrabold text-white sm:text-3xl">{stat.value}</div>
+              <div className="mt-1 text-xs font-medium text-white/50 uppercase tracking-widest">{stat.label}</div>
             </div>
-            <div className="mt-1 text-xs text-white/60 sm:text-sm">探究学習</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-extrabold text-white sm:text-4xl">
-              Online
-            </div>
-            <div className="mt-1 text-xs text-white/60 sm:text-sm">完全対応</div>
-          </div>
+          ))}
         </div>
+      </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/30 p-1">
-            <div className="h-2 w-1 animate-bounce rounded-full bg-white/60" />
-          </div>
-        </div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
+        <span className="text-xs tracking-[0.2em] uppercase">scroll</span>
+        <div className="h-8 w-px bg-gradient-to-b from-white/30 to-transparent" />
       </div>
     </section>
   );
